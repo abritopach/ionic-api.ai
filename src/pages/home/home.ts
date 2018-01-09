@@ -12,6 +12,10 @@ export class HomePage {
 
   messages: any = [];
   chatBox: string = '';
+  from: {
+    "user": "Usuario",
+    "bot": "Agente"
+  }
 
   constructor(public navCtrl: NavController, public platform: Platform, public weatherAgent: WeatherAgentProvider) {
     this.weatherAgent.conversation.subscribe(res => {
@@ -20,7 +24,7 @@ export class HomePage {
   }
 
   send(chatBox) {
-    console.log(chatBox);
+    //console.log(chatBox);
     this.weatherAgent.talk(chatBox).then(() => {
       this.chatBox = '';
     });

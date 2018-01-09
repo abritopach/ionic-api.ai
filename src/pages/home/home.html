@@ -7,9 +7,15 @@
 </ion-header>
 
 <ion-content padding>
+    <p>
+      Example of Ionic AI Chatbot with Dialogflow (or API.AI).
+    </p>
+    <p>
+      © 2018 Adrián Brito Pacheco <a href="https://github.com/abritopach" target="_blank">GitHub</a>
+    </p>
     <ion-list no-lines>
         <ion-item text-wrap *ngFor="let m of messages"  [ngClass]="{ 'from': m.from === 'bot','to':   m.from === 'user' }">
-          {{m.msg}}
+          {{m.from}}: {{m.msg}}
         </ion-item>
     </ion-list>
 </ion-content>
@@ -19,6 +25,6 @@
     <ion-input type="text" [(ngModel)]="chatBox" placeholder="Message..."></ion-input>
 		<ion-buttons end>
 			<button ion-button (click)="send(chatBox)"><ion-icon name="send"></ion-icon></button>
-		</ion-buttons>
+    </ion-buttons>
   </ion-toolbar>
 </ion-footer>

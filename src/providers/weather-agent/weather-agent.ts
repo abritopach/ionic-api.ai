@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ApiAiClient } from 'api-ai-javascript';  
-import { Observable } from 'rxjs/Observable';  
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';  
 
 /*
@@ -30,7 +29,7 @@ export class WeatherAgentProvider {
   talk(msg: string) {  
 
     const userMessage = new Message(msg, 'user');  
-    console.log(userMessage);
+    //console.log(userMessage);
 
     this.update(userMessage);  
 
@@ -40,7 +39,7 @@ export class WeatherAgentProvider {
 
         const speech = res.result.fulfillment.speech; 
         
-        console.log("speech", speech);
+        //console.log("speech", speech);
 
         const botMessage = new Message(speech, 'bot');  
 
