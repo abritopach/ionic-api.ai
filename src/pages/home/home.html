@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
       Ionic API.AI Weather Agent
     </ion-title>
@@ -7,15 +7,18 @@
 </ion-header>
 
 <ion-content padding>
-
-  <input ion-text type="text" [(ngModel)]="question">
-
-  <button ion-button (click)="ask(question)">
-    Ask
-  </button>
-
-  <div>
-    {{answer}}
-  </div>
-
+    <ion-list no-lines>
+        <ion-item text-wrap *ngFor="let m of messages"  [ngClass]="{ 'from': m.from === 'bot','to':   m.from === 'user' }">
+          {{m.msg}}
+        </ion-item>
+    </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-input type="text" [(ngModel)]="chatBox" placeholder="Message..."></ion-input>
+		<ion-buttons end>
+			<button ion-button (click)="send(chatBox)"><ion-icon name="send"></ion-icon></button>
+		</ion-buttons>
+  </ion-toolbar>
+</ion-footer>

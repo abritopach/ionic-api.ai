@@ -1,3 +1,30 @@
 page-home {
 
+    .text-input {
+        text-indent: 0;
+        color: white;
+      }
+
+    .text-input::-webkit-input-placeholder {
+        text-indent: 0;
+        color: white;
+      }
+
+    .from {
+      background-color: #C2185B;
+      color: white;
+      border: 2px solid #C2185B;
+      padding: 10px;
+      border-radius: 25px;
+      margin-bottom: 10px;
+    }
+
+    .to {
+      background-color: #536DFE;
+      color: white;
+      border: 2px solid #536DFE;
+      padding: 10px;
+      border-radius: 25px;
+      margin-bottom: 10px;
+    }
 }

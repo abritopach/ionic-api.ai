@@ -1,8 +1,8 @@
-import { Component, NgZone } from '@angular/core';
+import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { NavController } from 'ionic-angular';
 
-declare var ApiAIPromises: any;
+import { WeatherAgentProvider } from '../../providers/weather-agent/weather-agent';
 
 @Component({
   selector: 'page-home',
@@ -10,26 +10,19 @@ declare var ApiAIPromises: any;
 })
 export class HomePage {
 
-  answer: any;
+  messages: any = [];
+  chatBox: string = '';
 
-  constructor(public navCtrl: NavController, public platform: Platform, public ngZone: NgZone) {
-    platform.ready().then(() => {
-      ApiAIPromises.init({
-        clientAccessToken: "52b5d54f14d94d649a5998918b396628"
-      })
-      .then((result) =>  console.log(result))
+  constructor(public navCtrl: NavController, public platform: Platform, public weatherAgent: WeatherAgentProvider) {
+    this.weatherAgent.conversation.subscribe(res => {
+      this.messages = [...this.messages, ...res];
     });
   }
 
-  ask(question) {
-    ApiAIPromises.requestText({
-      query: question
-    })
-    .then(({result: {fulfillment: {speech}}}) => {
-       this.ngZone.run(()=> {
-         this.answer = speech;
-       });
-    })
+  send(chatBox) {
+    console.log(chatBox);
+    this.weatherAgent.talk(chatBox).then(() => {
+      this.chatBox = '';
+    });
   }
-
 }
