@@ -1,32 +1,53 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { NavController } from 'ionic-angular';
+import { Component, ViewChild } from "@angular/core";
+import { Platform, Content } from "ionic-angular";
+import { NavController } from "ionic-angular";
 
-import { WeatherAgentProvider } from '../../providers/weather-agent/weather-agent';
+import { WeatherAgentProvider } from "../../providers/weather-agent/weather-agent";
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: "page-home",
+  templateUrl: "home.html"
 })
 export class HomePage {
-
   messages: any = [];
-  chatBox: string = '';
+  chatBox: string = "";
   from: {
-    "user": "Usuario",
-    "bot": "Agente"
-  }
+    user: "Usuario";
+    bot: "Agente";
+  };
+  @ViewChild(Content) content: Content;
 
-  constructor(public navCtrl: NavController, public platform: Platform, public weatherAgent: WeatherAgentProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public platform: Platform,
+    public weatherAgent: WeatherAgentProvider
+  ) {
     this.weatherAgent.conversation.subscribe(res => {
       this.messages = [...this.messages, ...res];
+      this.scrollToBottom();
     });
   }
 
   send(chatBox) {
     //console.log(chatBox);
     this.weatherAgent.talk(chatBox).then(() => {
-      this.chatBox = '';
+      this.chatBox = "";
     });
+  }
+
+  scrollToBottom() {
+    setTimeout(() => {
+      this.content.scrollToBottom();
+    });
+  }
+
+  keyPressHandler(keyCode, chatBox) {
+    //console.log("keyPressHandler", keyCode);
+    // Pressed enter key.
+    if (keyCode == 13) {
+      this.weatherAgent.talk(chatBox).then(() => {
+        this.chatBox = "";
+      });
+    }
   }
 }
