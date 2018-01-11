@@ -7,16 +7,39 @@
 </ion-header>
 
 <ion-content padding>
-  <p>
-    Example of Ionic AI Chatbot with Dialogflow (or API.AI).
-  </p>
-  <p>
-    © 2018 Adrián Brito Pacheco
-    <a href="https://github.com/abritopach" target="_blank">GitHub</a>
-  </p>
+  <ion-card>
+    <ion-card-header text-wrap>
+      <p>
+        <strong>Example of Ionic AI Chatbot with Dialogflow (or API.AI).</strong>
+      </p>
+      <br>
+      <strong>How to test the APP</strong>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        <strong>Expressions</strong>: These are the example phrases/sentences, the user can type/speak to the Agent while interacting
+        with it.
+      </p>
+      <br>
+      <p>If you want to know about weather, you can ask Weather Agent in the following ways:</p>
+      <p>* ¿Qué tiempo hará mañana?</p>
+      <p>* Tiempo mañana</p>
+      <p>* Tiempo en Madrid</p>
+      <p>* ¿Cuál es el tiempo hoy?</p>
+      <p>* Tiempo de hoy</p>
+      <br>
+      <p>
+        <strong>© 2018 Adrián Brito Pacheco</strong>
+        <a href="https://github.com/abritopach" target="_blank">GitHub</a>
+      </p>
+    </ion-card-content>
+  </ion-card>
   <ion-list no-lines>
     <ion-item text-wrap *ngFor="let m of messages" [ngClass]="{ 'from': m.from === 'bot','to':   m.from === 'user' }">
-      {{m.from}}: {{m.msg}}
+      {{m.from}}:{{m.msg}}
+      <p>
+        <img *ngIf="m.iconURL != ''" [src]="m.iconURL" />
+      </p>
     </ion-item>
   </ion-list>
 </ion-content>
