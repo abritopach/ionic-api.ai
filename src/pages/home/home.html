@@ -36,10 +36,17 @@
   </ion-card>
   <ion-list no-lines>
     <ion-item text-wrap *ngFor="let m of messages" [ngClass]="{ 'from': m.from === 'bot','to':   m.from === 'user' }">
-      {{m.from}}:{{m.msg}}
+      <ion-avatar item-start>
+        <img [src]="m.from === 'bot' ? 'https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Robot-512.png' : 'https://image.flaticon.com/icons/png/128/149/149071.png'">
+      </ion-avatar>
+      <h2>
+        <strong>{{m.from}}</strong>
+      </h2>
+      <div>{{m.msg}}</div>
       <p>
         <img *ngIf="m.iconURL != ''" [src]="m.iconURL" />
       </p>
+      <ion-note item-end>{{currentDate | formatDate }}</ion-note>
     </ion-item>
   </ion-list>
 </ion-content>

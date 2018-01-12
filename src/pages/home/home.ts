@@ -16,6 +16,7 @@ export class HomePage {
     bot: "Agente";
   };
   @ViewChild(Content) content: Content;
+  currentDate = Date.now();
 
   constructor(
     public navCtrl: NavController,

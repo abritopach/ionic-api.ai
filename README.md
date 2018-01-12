@@ -4,6 +4,12 @@ Sample project that shows Ionic AI Chatbot with Dialogflow.
 
 ## Configuration
 
+1. Create a NodeJS based Webhook for Weather Agent. I’ve hosted a example webhook on [Heroku](https://weather-agent-webhook.herokuapp.com/).
+2. Create a Weather Agent ChatBot in [DialogFlow](https://dialogflow.com) (API.AI).
+3. Use Weather Agent in Ionic APP.
+
+![App example](readme_resources/app.gif "App example")
+
 ## Running
 
 Before you go through this example, you should have at least a basic understanding of Ionic concepts. You must also already have Ionic installed on your machine.
