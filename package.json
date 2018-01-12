@@ -50,6 +50,8 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-whitelist": {}
     },
-    "platforms": ["android"]
+    "platforms": [
+      "android"
+    ]
   }
 }
