@@ -1,6 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
-import { Platform, Content } from "ionic-angular";
-import { NavController } from "ionic-angular";
+import { Platform, Content, NavController } from "ionic-angular";
 
 import { WeatherAgentProvider } from "../../providers/weather-agent/weather-agent";
 
