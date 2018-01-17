@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { ApiAiClient } from "api-ai-javascript";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
+import * as moment from 'moment';
+
 /*
   Generated class for the WeatherAgentProvider provider.
 
@@ -23,7 +25,7 @@ export class WeatherAgentProvider {
   weatherDay: string = "today";
 
   constructor() {
-    console.log("Hello WeatherAgentProvider Provider");
+    //console.log("Hello WeatherAgentProvider Provider");
   }
 
   // Sends and receives messages via DialogFlow.
@@ -47,7 +49,7 @@ export class WeatherAgentProvider {
         }
 
 
-        const botMessage = new Message(speech + " " + formatedMessage, "bot", iconURL);
+        const botMessage = new Message(speech + "\n" + formatedMessage, "bot", iconURL);
 
         this.update(botMessage);
       })
@@ -75,8 +77,24 @@ export class WeatherAgentProvider {
     //console.log(data);
     let message = "";
     if (this.weatherDay == "today") {
-      message = data.list[0].main.temp + "°С temperature from " + data.list[0].main.temp_min + " to " + data.list[0].main.temp_max + " °С, wind";
+      // Get current main weather.
+      message = this.capitalizeFirstLetter(data.list[0].weather[0].description) + ", " + data.list[0].main.temp + "°С temperature from " + data.list[0].main.temp_min + " to " + data.list[0].main.temp_max + " °С, wind " +
+      data.list[0].wind.speed + " m/s, " + data.list[0].main.pressure + " hpa";
+    }
+    if (this.weatherDay == "tomorrow") {
+      let tomorrowStr = moment().add(1,'days').format("YYYY-MM-DD"); 
+      // Iterate to get time tomorrow at 12:00 p.m.
+      for (let i = 0; i < data.list.length; i++) {
+        if (data.list[i].dt_txt == tomorrowStr + " 12:00:00") {
+          message = this.capitalizeFirstLetter(data.list[0].weather[0].description) + ", " + data.list[i].main.temp + "°С temperature from " + data.list[i].main.temp_min + " to " + data.list[i].main.temp_max + " °С, wind " +
+          data.list[i].wind.speed + " m/s, " + data.list[i].main.pressure + " hpa";
+        }
+      }
     }
     return message;
+  }
+
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 }

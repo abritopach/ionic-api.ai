@@ -22,6 +22,11 @@
       </p>
       <br>
       <p>If you want to know about weather, you can ask Weather Agent in the following ways:</p>
+      <p>* Previsión tiempo mañana</p>
+      <p>* Previsión tiempo hoy</p>
+      <p>* Conocer el tiempo mañana</p>
+      <p>* Conocer el tiempo hoy</p>
+      <p>* ¿Qué tiempo hace hoy?</p>
       <p>* ¿Qué tiempo hará mañana?</p>
       <p>* Tiempo mañana</p>
       <p>* Tiempo en Madrid</p>
@@ -42,7 +47,7 @@
       <h2>
         <strong>{{m.from}}</strong>
       </h2>
-      <div>{{m.msg}}</div>
+      <div class="message">{{m.msg}}</div>
       <p>
         <img *ngIf="m.iconURL != ''" [src]="m.iconURL" />
       </p>
