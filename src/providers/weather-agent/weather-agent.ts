@@ -31,9 +31,8 @@ export class WeatherAgentProvider {
   // Sends and receives messages via DialogFlow.
   talk(msg: string) {
     const userMessage = new Message(msg, "user", "");
-    this.detectWeatherDay(userMessage);
-
     this.update(userMessage);
+    this.detectWeatherDay(userMessage);
 
     return this.client
       .textRequest(msg)
@@ -44,8 +43,9 @@ export class WeatherAgentProvider {
         let formatedMessage = "";
 
         if (typeof res.result.fulfillment["data"] !== "undefined") {
-          formatedMessage = this.formatBotMessage(res.result.fulfillment["data"]);
-          iconURL = this.baseIconUrl + res.result.fulfillment["data"].list[0].weather[0].icon + ".png";
+          let index = this.getIndex(res.result.fulfillment["data"]);
+          formatedMessage = this.formatBotMessage(res.result.fulfillment["data"], index);
+          iconURL = this.baseIconUrl + res.result.fulfillment["data"].list[index].weather[0].icon + ".png";
         }
 
 
@@ -70,27 +70,28 @@ export class WeatherAgentProvider {
     if (userMessage.msg.toLowerCase().indexOf("mañana") != -1) {
       this.weatherDay = "tomorrow";
     }
-    //console.log("weatherDay", this.weatherDay);
+    //console.log("weatherDay: ", this.weatherDay);
   }
 
-  formatBotMessage(data) {
-    //console.log(data);
-    let message = "";
-    if (this.weatherDay == "today") {
-      // Get current main weather.
-      message = this.capitalizeFirstLetter(data.list[0].weather[0].description) + ", " + data.list[0].main.temp + "°С temperature from " + data.list[0].main.temp_min + " to " + data.list[0].main.temp_max + " °С, wind " +
-      data.list[0].wind.speed + " m/s, " + data.list[0].main.pressure + " hpa";
-    }
+  getIndex(data) {
+    let index = 0;
     if (this.weatherDay == "tomorrow") {
       let tomorrowStr = moment().add(1,'days').format("YYYY-MM-DD"); 
-      // Iterate to get time tomorrow at 12:00 p.m.
+      // Iterate to get index from time tomorrow at 12:00 p.m.
       for (let i = 0; i < data.list.length; i++) {
         if (data.list[i].dt_txt == tomorrowStr + " 12:00:00") {
-          message = this.capitalizeFirstLetter(data.list[0].weather[0].description) + ", " + data.list[i].main.temp + "°С temperature from " + data.list[i].main.temp_min + " to " + data.list[i].main.temp_max + " °С, wind " +
-          data.list[i].wind.speed + " m/s, " + data.list[i].main.pressure + " hpa";
+          index = i;
         }
       }
     }
+    return index;
+  }
+
+  formatBotMessage(data, index) {
+    //console.log(data);
+    let message = this.capitalizeFirstLetter(data.list[index].weather[0].description) + ", " + data.list[index].main.temp + "°С temperature from " +
+     data.list[index].main.temp_min + " to " + data.list[index].main.temp_max + " °С, wind " + data.list[index].wind.speed + " m/s, " +
+     data.list[index].main.pressure + " hpa";
     return message;
   }
 
