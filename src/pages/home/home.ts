@@ -1,7 +1,9 @@
 import { Component, ViewChild } from "@angular/core";
-import { Platform, Content, NavController } from "ionic-angular";
+import { Platform, Content, NavController, ModalController } from "ionic-angular";
 
 import { WeatherAgentProvider } from "../../providers/weather-agent/weather-agent";
+
+import { WeatherAnimationModalPage } from '../../modals/weather-animation-modal';
 
 @Component({
   selector: "page-home",
@@ -20,7 +22,8 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public platform: Platform,
-    public weatherAgent: WeatherAgentProvider
+    public weatherAgent: WeatherAgentProvider,
+    public modalCtrl: ModalController
   ) {
     this.weatherAgent.conversation.subscribe(res => {
       this.messages = [...this.messages, ...res];
@@ -49,5 +52,11 @@ export class HomePage {
         this.chatBox = "";
       });
     }
+  }
+
+  onClickWeatherIcon() {
+    console.log("onClickWeatherIcon");
+    let modal = this.modalCtrl.create(WeatherAnimationModalPage);
+    modal.present();
   }
 }

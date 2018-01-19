@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Tiempo
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text color="primary" showWhen="ios">Cancel</span>
+                <ion-icon name="md-close" showWhen="android,windows,core"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+  
+<ion-content>
+    <div class="controls">
+            <button color="light" ion-button (click)="setDay()">Day</button>
+            <button color="light" ion-button (click)="setCloudy()">Cloudy</button>
+            <button color="light" ion-button (click)="setSunset()">Sunset</button>
+            <button color="light" ion-button (click)="setNight()">Night</button>
+        </div>
+        
+        <svg class="background" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 750 1334">
+            <defs>
+            <style>
+                .cls-1 {
+                fill: url(#linear-gradient);
+                }
+        
+                .cls-2 {
+                fill: #fefbdf;
+                opacity: 0.07;
+                }
+        
+                .cls-3 {
+                fill: #ffda71;
+                }
+        
+                .cls-4, .cls-5 {
+                fill: #fff;
+                }
+        
+                .cls-4 {
+                opacity: 0.95;
+                }
+            </style>
+            <linearGradient id="linear-gradient" x1="375" y1="1334" x2="375" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#fff"/>
+                <stop offset="1" stop-color="#50a7dd"/>
+            </linearGradient>
+            </defs>
+            <title>sunsetsvg</title>
+            <rect id="Sky-2" data-name="Sky" class="cls-1" width="750" height="1334"/>
+            <g id="Sun" data-name="Sun">
+            <circle class="cls-2" cx="385" cy="335.7" r="315.74"/>
+            <circle class="cls-3" cx="385" cy="335.7" r="180.56"/>
+            </g>
+            <g id="Clouds">
+            <path id="Cloud" class="cls-4" d="M303.24,920.47c9.53-6.84,15.35-16,15.35-26,0-18.94-20.8-34.66-48.16-37.83,0-.2,0-0.39,0-0.59,0-28.13-29.43-50.93-65.74-50.93-31.76,0-58.27,17.45-64.4,40.65A156.9,156.9,0,0,0,116.74,844c-58.3,0-105.56,31.51-105.56,70.37s47.26,70.37,105.56,70.37c22.56,0,43.45-4.72,60.61-12.75,10.15,19.11,43.41,33.12,82.91,33.12,47.56,0,86.11-20.31,86.11-45.37C346.37,943,329,928.31,303.24,920.47Z"/>
+            <path id="Cloud-2" data-name="Cloud" class="cls-5" d="M714.81,520.89c0-19.94-38.95-36.37-89.12-38.62,3.74-4.4,5.79-9.17,5.79-14.16,0-22-39.8-39.81-88.89-39.81-45.55,0-83.1,15.35-88.27,35.13-13.56-5.18-30.92-8.51-50-9.1-10.25-10.15-27-16.77-45.95-16.77-31.19,0-56.48,17.93-56.48,40,0,0.42,0,.84,0,1.26-19.2,9.08-31.53,23.07-31.53,38.79,0,27.36,37.31,49.54,83.33,49.54,20.06,0,38.45-4.21,52.83-11.23a33.31,33.31,0,0,0,35.73,9.44c11.07,22.73,38.54,38.83,70.7,38.83,20,0,38.26-6.26,51.83-16.47,8.79,9.95,23.5,16.47,40.17,16.47,26.92,0,48.74-17,48.74-38a30.14,30.14,0,0,0-1.5-9.38C688.94,551.06,714.81,537.14,714.81,520.89Z"/>
+            <path id="Cloud-3" data-name="Cloud" class="cls-4" d="M303.24,351c9.53-6.84,15.35-16,15.35-26,0-18.94-20.8-34.66-48.16-37.83,0-.2,0-0.39,0-0.59,0-28.13-29.43-50.93-65.74-50.93-31.76,0-58.27,17.45-64.4,40.65a156.9,156.9,0,0,0-23.56-1.76c-58.3,0-105.56,31.51-105.56,70.37s47.26,70.37,105.56,70.37c22.56,0,43.45-4.72,60.61-12.75,10.15,19.11,43.41,33.12,82.91,33.12,47.56,0,86.11-20.31,86.11-45.37C346.37,373.53,329,358.87,303.24,351Z"/>
+            <path id="Cloud-4" data-name="Cloud" class="cls-5" d="M657.61,1201.29c9.53-6.84,15.35-16,15.35-26,0-18.94-20.8-34.66-48.16-37.83,0-.2,0-0.39,0-0.59,0-28.13-29.43-50.93-65.74-50.93-31.76,0-58.27,17.45-64.4,40.65a156.9,156.9,0,0,0-23.56-1.76c-44.93,0-83.29,18.71-98.53,45.08-30.67,13.75-50.29,34.78-50.29,58.36,0,41.42,60.52,75,135.19,75,41.79,0,79.14-10.52,103.94-27,14.64,6.08,33.12,9.71,53.21,9.71,47.56,0,86.11-20.31,86.11-45.37C700.74,1223.79,683.38,1209.13,657.61,1201.29Z"/>
+            </g>
+        </svg>
+        
+        <div class="time">{{timeString}}</div>
+</ion-content>

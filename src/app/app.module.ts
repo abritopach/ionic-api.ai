@@ -10,11 +10,13 @@ import { WeatherAgentProvider } from "../providers/weather-agent/weather-agent";
 
 import { FormatDatePipe } from "../pipes/format-date/format-date";
 
+import { WeatherAnimationModalPage } from '../modals/weather-animation-modal';
+
 @NgModule({
-  declarations: [MyApp, HomePage, FormatDatePipe],
+  declarations: [MyApp, HomePage, FormatDatePipe, WeatherAnimationModalPage],
   imports: [BrowserModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage],
+  entryComponents: [MyApp, HomePage, WeatherAnimationModalPage],
   providers: [
     StatusBar,
     SplashScreen,

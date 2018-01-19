@@ -49,7 +49,7 @@
       </h2>
       <div class="message">{{m.msg}}</div>
       <p>
-        <img *ngIf="m.iconURL != ''" [src]="m.iconURL" />
+        <img *ngIf="m.iconURL != ''" [src]="m.iconURL" (click)="onClickWeatherIcon()" />
       </p>
       <ion-note item-end>{{currentDate | formatDate }}</ion-note>
     </ion-item>
